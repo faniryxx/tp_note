@@ -1,17 +1,26 @@
 package com.tp_note.tp_note;
 
-public class Contrat {
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name = "CONTRAT")
+public class ContratEntity implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name = "id_contrat")
 	private int id_contrat;
+	@Column(name = "description")
 	private String description;
+	@Column(name = "type_de_contrat")
 	private String type_de_contrat;
-	
-	public Contrat(int id_contrat, String description, String type_de_contrat) {
-		super();
-		this.id_contrat = id_contrat;
-		this.description = description;
-		this.type_de_contrat = type_de_contrat;
-	}
 	
 	public int getId_contrat() {
 		return id_contrat;
