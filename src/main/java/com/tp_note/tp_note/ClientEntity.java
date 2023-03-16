@@ -12,6 +12,11 @@ import javax.persistence.Table;
 @Table(name = "CLIENT")
 public class ClientEntity implements Serializable {
 
+	@Override
+	public String toString() {
+		return "ClientEntity [id=" + id + ", nom=" + nom + ", prenom=" + prenom + "]";
+	}
+
 	/**
 	 * 
 	 */
@@ -23,8 +28,6 @@ public class ClientEntity implements Serializable {
 	private String nom;
 	@Column(name = "prenom")
 	private String prenom;
-	@Column(name = "adresse")
-	private String adresse;
 
 	/**
 	 * @return the id
@@ -66,20 +69,6 @@ public class ClientEntity implements Serializable {
 	 */
 	public void setPrenom(final String prenom) {
 		this.prenom = prenom;
-	}
-
-	/**
-	 * @return the adresse
-	 */
-	public String getAdresse() {
-		return this.adresse;
-	}
-
-	/**
-	 * @param adresse the adresse to set
-	 */
-	public void setAdresse(final String adresse) {
-		this.adresse = adresse;
 	}
 
 }

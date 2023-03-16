@@ -12,6 +12,11 @@ import javax.persistence.Table;
 @Table(name = "CONTRAT")
 public class ContratEntity implements Serializable {
 	
+	@Override
+	public String toString() {
+		return "ContratEntity [id_contrat=" + id_contrat + ", description=" + description + ", type_de_contrat="
+				+ type_de_contrat + "]";
+	}
 	private static final long serialVersionUID = 1L;
 
 	@Id
