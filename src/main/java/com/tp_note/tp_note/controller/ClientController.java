@@ -20,24 +20,19 @@ public class ClientController {
     @Autowired
     private ClientRepository clientRepository;
 
-    // Afficher tous les clients
     @GetMapping("/clients")
-    public List listerClients() {
+    public List listClients() {
         return clientRepository.listerClients();
     }
 
-    /*@GetMapping("/{client_id}/contrats")
-    public List<Contrat> getContratsByClientId(@PathVariable(value = "client_id") Long clientId) {
-        Client client = clientRepository.findById(clientId);
-                //.orElseThrow(() -> new ResourceNotFoundException("Client", "id", clientId));
-
-        return client.getContrats();
+    @GetMapping("/clients/{client_id}/contrats")
+    public List getContratsByClientId(@PathVariable(value = "client_id") Long clientId) {
+        return clientRepository.getContrats(clientId);
     }
 
     @GetMapping("/{client_id}/contrats/{contrat_id}")
-    public Contrat getContratByIdAndClientId(@PathVariable(value = "client_id") Long clientId,
+    public List getContratDetails(@PathVariable(value = "client_id") Long clientId,
                                               @PathVariable(value = "contrat_id") Long contratId) {
-        return clientRepository.findByIdAndContratId(clientId, contratId);
-                //.orElseThrow(() -> new ResourceNotFoundException("Contrat", "id", contratId));
-    }*/
+        return clientRepository.findContratByIdAndContratId(clientId, contratId);
+    }
 }

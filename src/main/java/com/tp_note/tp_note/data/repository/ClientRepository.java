@@ -1,6 +1,7 @@
 package com.tp_note.tp_note.data.repository;
 
 import com.tp_note.tp_note.ClientEntity;
+import com.tp_note.tp_note.ContratEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -18,8 +19,13 @@ public class ClientRepository {
 		return this.jdbcTemplate.queryForList(sql);
 	}
 
-	/*public ClientEntity findById(Long clientId){
-		String sql = "SELECT * FROM client WHERE id_client="+clientId.toString()+";";
-		return this.jdbcTemplate.queryForObject(sql, ClientEntity.class);
-	}*/
+	public List getContrats(Long clientId) {
+		String sql = "SELECT * FROM contrat WHERE id_client="+clientId.toString()+";";
+		return this.jdbcTemplate.queryForList(sql);
+	}
+
+	public List findContratByIdAndContratId(Long clientId, Long contratId) {
+		String sql = "SELECT * FROM contrat WHERE id_client="+clientId.toString()+" AND id_contrat="+contratId.toString()+";";
+		return this.jdbcTemplate.queryForList(sql);
+	}
 }
