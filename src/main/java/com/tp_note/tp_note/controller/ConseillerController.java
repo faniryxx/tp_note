@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tp_note.tp_note.ClientEntity;
+import com.tp_note.tp_note.ConseillerEntity;
 import com.tp_note.tp_note.data.repository.ClientRepository;
 import com.tp_note.tp_note.service.ClientService;
 import com.tp_note.tp_note.service.ConseillerService;
@@ -26,6 +27,12 @@ public class ConseillerController {
 	@Autowired
     private ConseillerService conseillerService;
 
+    @GetMapping("/{conseiller_id}")
+    public ConseillerEntity getConseiller(@PathVariable(value = "conseiller_id") Integer conseillerId) {
+    	System.out.println("CONTROLLER");
+        return conseillerService.getById(conseillerId);
+    }
+	
     @GetMapping("/{conseiller_id}/clients")
     public List<ClientEntity> getClientsByConseillerId(@PathVariable(value = "conseiller_id") Integer conseillerId) {
         return conseillerService.findClientsByConseillerId(conseillerId);
