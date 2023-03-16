@@ -1,21 +1,33 @@
-package com.tp_note.tp_note;
+package com.tp_note.tp_note.model.dto;
 
-import javax.persistence.*;
+import com.tp_note.tp_note.ClientEntity;
 
-@Entity
-@Table(name = "CLIENT")
-public class ClientEntity {
+public class ClientDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_client")
     private Integer id;
-    @Column(name="nom")
     private String nom;
-    @Column(name="prenom")
     private String prenom;
-    @Column(name="id_conseiller")
     private Integer id_conseiller;
+
+    public ClientDTO() {
+        super();
+    }
+    public ClientDTO(final ClientEntity clientEntity) {
+        this.id = clientEntity.getId();
+        this.nom = clientEntity.getNom();
+        this.prenom = clientEntity.getPrenom();
+        this.id_conseiller = clientEntity.getId_conseiller();
+    }
+
+    public ClientEntity toEntity(){
+        ClientEntity clientEntity = new ClientEntity();
+        clientEntity.setId(id);
+        clientEntity.setNom(nom);
+        clientEntity.setPrenom(prenom);
+        clientEntity.setId_conseiller(id_conseiller);
+        return clientEntity;
+    }
+
     /**
      * @return the id
      */
@@ -57,9 +69,9 @@ public class ClientEntity {
         this.prenom = prenom;
     }
 
-	/**
-	 * @return the id_conseiller
-	 */
+    /**
+     * @return the id_conseiller
+     */
     public Integer getId_conseiller() {
         return id_conseiller;
     }

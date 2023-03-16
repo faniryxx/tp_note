@@ -2,7 +2,10 @@ package com.tp_note.tp_note.service.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
+import com.tp_note.tp_note.model.dto.ClientDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.tp_note.tp_note.ClientEntity;
@@ -16,12 +19,20 @@ import org.springframework.stereotype.Service;
 public class ClientServiceImpl implements ClientService{
 
 	@Autowired
+	private ClientRepository clientRepository;
+
+	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	@Override
+	/*@Override
 	public List getListeClients() {
 		String sql = "SELECT * FROM client;";
 		return this.jdbcTemplate.queryForList(sql);
+	}*/
+
+	@Override
+	public List<ClientDTO> getListeClients() {
+		return this.clientRepository.findAll().stream().map(ClientDTO::new).collect(Collectors.toList());
 	}
 
 	@Override
@@ -40,5 +51,10 @@ public class ClientServiceImpl implements ClientService{
 	public List getClientsFromConseiller(Integer conseillerId) {
 		String sql = "SELECT * FROM client WHERE id_conseiller="+conseillerId.toString()+";";
 		return this.jdbcTemplate.queryForList(sql);
+	}
+
+	@Override
+	public void ajouterClient(ClientDTO client) {
+		this.clientRepository.save(client.toEntity());
 	}
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.tp_note.tp_note.ClientEntity;
 import com.tp_note.tp_note.ContratEntity;
+import com.tp_note.tp_note.model.dto.ClientDTO;
 
 public interface ClientService {
 	
@@ -11,4 +12,5 @@ public interface ClientService {
 	List getListeContrats(Integer clientId);
 	List getContratDetails(Integer cliendId, Integer contratId);
 	List getClientsFromConseiller(Integer conseillerId);
+	void ajouterClient(ClientDTO client);
 }
