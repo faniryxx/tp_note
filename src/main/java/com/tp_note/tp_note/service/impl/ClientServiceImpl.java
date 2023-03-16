@@ -18,6 +18,9 @@ public class ClientServiceImpl implements ClientService{
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	@Autowired
+	private ClientRepository clientRepository;
+
 	@Override
 	public List getListeClients() {
 		String sql = "SELECT * FROM client;";
@@ -40,5 +43,10 @@ public class ClientServiceImpl implements ClientService{
 	public List getClientsFromConseiller(Integer conseillerId) {
 		String sql = "SELECT * FROM client WHERE id_conseiller="+conseillerId.toString()+";";
 		return this.jdbcTemplate.queryForList(sql);
+	}
+
+	@Override
+	public void addClient(ClientEntity client) {
+
 	}
 }
