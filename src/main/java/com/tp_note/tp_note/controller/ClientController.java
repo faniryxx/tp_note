@@ -1,9 +1,6 @@
 package com.tp_note.tp_note.controller;
 
-import com.tp_note.tp_note.Client;
-import com.tp_note.tp_note.Conseiller;
-import com.tp_note.tp_note.Contrat;
-import com.tp_note.tp_note.data.repository.ClientRepository;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.tp_note.tp_note.ClientEntity;
+import com.tp_note.tp_note.ContratEntity;
+import com.tp_note.tp_note.data.repository.ClientRepository;
 
 @RestController
 @RequestMapping("/clients")
@@ -22,15 +21,15 @@ public class ClientController {
     private ClientRepository clientRepository;
 
     @GetMapping("/{client_id}/contrats")
-    public List<Contrat> getContratsByClientId(@PathVariable(value = "client_id") Long clientId) {
-        Client client = clientRepository.findById(clientId);
+    public List<ContratEntity> getContratsByClientId(@PathVariable(value = "client_id") Long clientId) {
+        ClientEntity client = clientRepository.findById(clientId);
                 //.orElseThrow(() -> new ResourceNotFoundException("Client", "id", clientId));
 
         return client.getContrats();
     }
 
     @GetMapping("/{client_id}/contrats/{contrat_id}")
-    public Contrat getContratByIdAndClientId(@PathVariable(value = "client_id") Long clientId,
+    public ContratEntity getContratByIdAndClientId(@PathVariable(value = "client_id") Long clientId,
                                               @PathVariable(value = "contrat_id") Long contratId) {
         return clientRepository.findByIdAndContratId(clientId, contratId);
                 //.orElseThrow(() -> new ResourceNotFoundException("Contrat", "id", contratId));

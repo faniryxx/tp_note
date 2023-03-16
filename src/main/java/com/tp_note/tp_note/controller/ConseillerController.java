@@ -1,13 +1,21 @@
 package com.tp_note.tp_note.controller;
 
-import com.tp_note.tp_note.Conseiller;
-import com.tp_note.tp_note.Client;
-
-import com.tp_note.tp_note.ConseillerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.tp_note.tp_note.ClientEntity;
+import com.tp_note.tp_note.ConseillerEntity;
+import com.tp_note.tp_note.data.repository.ConseillerRepository;
+
+
 
 @RestController
 @RequestMapping("/conseillers")
@@ -17,16 +25,16 @@ public class ConseillerController {
     private ConseillerRepository conseillerRepository;
 
     @GetMapping("/{conseiller_id}/clients")
-    public List<Client> getClientsByConseillerId(@PathVariable(value = "conseiller_id") Long conseillerId) {
-        Conseiller conseiller = conseillerRepository.findById(conseillerId);
+    public List<ClientEntity> getClientsByConseillerId(@PathVariable(value = "conseiller_id") Long conseillerId) {
+        ConseillerEntity conseiller = conseillerRepository.findById(conseillerId);
                 //.orElseThrow(() -> new ResourceNotFoundException("Conseiller", "id", conseillerId));
 
         return conseiller.getClients();
     }
 
     @PostMapping("/{conseiller_id}/clients")
-    public Client addClient(@PathVariable(value = "conseiller_id") Long conseillerId, @RequestBody Client client) {
-        Conseiller conseiller = conseillerRepository.findById(conseillerId);
+    public ClientEntity addClient(@PathVariable(value = "conseiller_id") Long conseillerId, @RequestBody Client client) {
+        ConseillerEntity conseiller = conseillerRepository.findById(conseillerId);
                 //.orElseThrow(() -> new ResourceNotFoundException("Conseiller", "id", conseillerId));
 
         client.setConseiller(conseiller);
@@ -34,12 +42,12 @@ public class ConseillerController {
     }
 
     @PutMapping("/{conseiller_id}/clients/{client_id}")
-    public Client updateClient(@PathVariable(value = "conseiller_id") Long conseillerId,
-                               @PathVariable(value = "client_id") Long clientId, @RequestBody Client clientDetails) {
-        Conseiller conseiller = conseillerRepository.findById(conseillerId);
+    public ClientEntity updateClient(@PathVariable(value = "conseiller_id") Long conseillerId,
+                               @PathVariable(value = "client_id") Long clientId, @RequestBody ClientEntity clientDetails) {
+        ConseillerEntity conseiller = conseillerRepository.findById(conseillerId);
                 //.orElseThrow(() -> new ResourceNotFoundException("Conseiller", "id", conseillerId));
 
-        Client client = clientRepository.findById(clientId);
+        ClientEntity client = clientRepository.findById(clientId);
                 //.orElseThrow(() -> new ResourceNotFoundException("Client", "id", clientId));
 
         client.setNom(clientDetails.getNom());
