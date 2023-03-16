@@ -7,25 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
-@Entity
-@Table(name = "CLIENT")
 public class ClientEntity implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	@Id
-	@Column(name = "id_client")
 	private Integer id;
-	@Column(name = "nom")
 	private String nom;
-	@Column(name = "prenom")
 	private String prenom;
 	@Column(name = "id_conseiller")
 	private Integer id_conseiller;
-
 	/**
 	 * @return the id
 	 */
