@@ -54,7 +54,7 @@ public class ConseillerController {
     public ClientEntity updateClient(@PathVariable(value = "conseiller_id") Integer conseillerId,
                                @PathVariable(value = "client_id") Integer clientId, @RequestBody ClientEntity clientDetails) {
     	clientDetails.setId(clientId);
-    	clientDetails.setIdConseiller(conseillerId);
+    	clientDetails.setId_conseiller(conseillerId);
         return conseillerService.save(clientDetails);
     }
 

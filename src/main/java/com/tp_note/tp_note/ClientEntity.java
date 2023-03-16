@@ -1,11 +1,22 @@
 package com.tp_note.tp_note;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "CLIENT")
 public class ClientEntity {
 
+    @Id
+    @Column(name="id_client")
     private Integer id;
+    @Column(name="nom")
     private String nom;
+    @Column(name="prenom")
     private String prenom;
+    @Column(name="id_conseiller")
     private Integer id_conseiller;
     /**
      * @return the id
@@ -51,15 +62,12 @@ public class ClientEntity {
 	/**
 	 * @return the id_conseiller
 	 */
-	public Integer getIdConseiller() {
-		return this.id_conseiller;
-	}
+    public Integer getId_conseiller() {
+        return id_conseiller;
+    }
 
-	/**
-	 * @param id_conseiller the id_conseiller to set
-	 */
-	public void setIdConseiller(final Integer id_conseiller) {
-		this.id_conseiller = id_conseiller;
-	}
+    public void setId_conseiller(Integer id_conseiller) {
+        this.id_conseiller = id_conseiller;
+    }
 
 }
