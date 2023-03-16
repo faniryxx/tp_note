@@ -12,29 +12,22 @@ import javax.persistence.Table;
 @Table(name = "CONSEILLER")
 public class ConseillerEntity implements Serializable {
 	
-	@Override
-	public String toString() {
-		return "ConseillerEntity [id_conseiller=" + id_conseiller + ", nom=" + nom + ", prenom=" + prenom
-				+ ", id_client=" + id_client + "]";
-	}
+
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@Column(name = "id_conseiller")
-	private int id_conseiller;
+	private Integer idConseiller;
 	@Column(name = "nom")
 	private String nom;
 	@Column(name = "prenom")
 	private String prenom;
-	@Column(name = "id_client")
-	private int id_client;
 
-	
-	public int getId_conseiller() {
-		return id_conseiller;
+	public Integer getIdConseiller() {
+		return idConseiller;
 	}
-	public void setId_conseiller(int id_conseiller) {
-		this.id_conseiller = id_conseiller;
+	public void setIdConseiller(Integer idConseiller) {
+		this.idConseiller = idConseiller;
 	}
 	public String getNom() {
 		return nom;
@@ -48,10 +41,12 @@ public class ConseillerEntity implements Serializable {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-	public int getId_client() {
-		return id_client;
+
+	@Override
+	public String toString() {
+		return "ConseillerEntity [idConseiller=" + idConseiller + ", nom=" + nom + ", prenom=" + prenom + "]";
 	}
-	public void setId_client(int id_client) {
-		this.id_client = id_client;
-	}
+
+	
+
 }

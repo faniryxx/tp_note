@@ -9,6 +9,7 @@ import com.tp_note.tp_note.ClientEntity;
 import com.tp_note.tp_note.ConseillerEntity;
 import com.tp_note.tp_note.data.repository.ClientRepository;
 import com.tp_note.tp_note.data.repository.ConseillerRepository;
+import com.tp_note.tp_note.model.dto.ConseillerDTO;
 import com.tp_note.tp_note.service.ConseillerService;
 
 @Service
@@ -31,9 +32,9 @@ public class ConseillerServiceImpl implements ConseillerService {
 	}
 
 	@Override
-	public ConseillerEntity getById(Integer id) {
-		System.out.println("SERVICE");
-		return conseillerRepository.getReferenceById(id);
+	public ConseillerDTO getById(Integer id) {
+		
+		return new ConseillerDTO(conseillerRepository.findById(id).get());
 	}
 
 }
