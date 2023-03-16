@@ -54,4 +54,14 @@ public class ClientServiceImpl implements ClientService{
 				clientId
 		);
 	}
+
+	@Override
+	public void modifierClient(Integer clientId, ClientDTO client) {
+		jdbcTemplate.update(
+				"UPDATE spring.client " +
+						"SET nom=(?), prenom=(?), id_conseiller=(?) " +
+						"WHERE id_client=(?); ",
+				client.getNom(), client.getPrenom(), client.getId_conseiller(), clientId
+		);
+	}
 }

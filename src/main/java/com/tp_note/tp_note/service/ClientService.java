@@ -14,5 +14,5 @@ public interface ClientService {
 	List getClientsFromConseiller(Integer conseillerId);
 	void ajouterClient(ClientDTO client);
 	void supprimerClient(Integer clientId);
-
+	void modifierClient(Integer clientId, ClientDTO client);
 }

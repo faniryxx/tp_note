@@ -39,8 +39,15 @@ public class ClientController {
     }
 
     @DeleteMapping("/client/{client_id}")
-    ResponseEntity.BodyBuilder supprimerCompte(@PathVariable("client_id") Integer clientId) {
+    ResponseEntity.BodyBuilder supprimerClient(@PathVariable("client_id") Integer clientId) {
         this.clientService.supprimerClient(clientId);
+        return ResponseEntity.status(HttpStatus.OK);
+    }
+
+    @PostMapping("/client/{client_id}")
+    ResponseEntity.BodyBuilder modifierClient(@PathVariable("client_id") Integer clientId,
+                                              @RequestBody ClientDTO client) {
+        this.clientService.modifierClient(clientId, client);
         return ResponseEntity.status(HttpStatus.OK);
     }
 }
