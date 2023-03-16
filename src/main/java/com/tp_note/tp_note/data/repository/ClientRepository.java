@@ -28,4 +28,9 @@ public class ClientRepository {
 		String sql = "SELECT * FROM contrat WHERE id_client="+clientId.toString()+" AND id_contrat="+contratId.toString()+";";
 		return this.jdbcTemplate.queryForList(sql);
 	}
+
+	public List getClientsFromConseiller(Long conseillerId) {
+		String sql = "SELECT * FROM client WHERE id_conseiller="+conseillerId.toString()+";";
+		return this.jdbcTemplate.queryForList(sql);
+	}
 }
