@@ -22,15 +22,15 @@ public class ClientRepository {
 		return clientService.getListeClients();
 	}
 
-	public List getContrats(Long clientId) {
+	public List getContrats(Integer clientId) {
 		return clientService.getListeContrats(clientId);
 	}
 
-	public List findContratByIdAndContratId(Long clientId, Long contratId) {
+	public List findContratByIdAndContratId(Integer clientId, Integer contratId) {
 		return clientService.getContratDetails(clientId, contratId);
 	}
 
-	public List getClientsFromConseiller(Long conseillerId) {
+	public List getClientsFromConseiller(Integer conseillerId) {
 		return clientService.getClientsFromConseiller(conseillerId);
 	}
 }

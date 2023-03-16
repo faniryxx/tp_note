@@ -26,13 +26,13 @@ public class ClientController {
     }
 
     @GetMapping("/clients/{client_id}/contrats")
-    public List getContratsByClientId(@PathVariable(value = "client_id") Long clientId) {
+    public List getContratsByClientId(@PathVariable(value = "client_id") Integer clientId) {
         return clientRepository.getContrats(clientId);
     }
 
     @GetMapping("/{client_id}/contrats/{contrat_id}")
-    public List getContratDetails(@PathVariable(value = "client_id") Long clientId,
-                                  @PathVariable(value = "contrat_id") Long contratId) {
+    public List getContratDetails(@PathVariable(value = "client_id") Integer clientId,
+                                  @PathVariable(value = "contrat_id") Integer contratId) {
         return clientRepository.findContratByIdAndContratId(clientId, contratId);
     }
 }
