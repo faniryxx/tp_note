@@ -4,10 +4,11 @@ import java.util.List;
 
 import com.tp_note.tp_note.ClientEntity;
 import com.tp_note.tp_note.ConseillerEntity;
+import com.tp_note.tp_note.model.dto.ConseillerDTO;
 
 public interface ConseillerService {
 	
-	ConseillerEntity getById(Integer id);
+	ConseillerDTO getById(Integer id);
 	
 	/**
 	 * Récupère la liste des clients d'un conseiller
