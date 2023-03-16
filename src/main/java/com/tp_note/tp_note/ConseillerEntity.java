@@ -1,20 +1,30 @@
 package com.tp_note.tp_note;
 
-public class Conseiller {
-	
-	private int id_conseiller;
-	private String nom;
-	private String prenom;
-	private int id_client;
-	
-	public Conseiller(int id_conseiller, String nom, String prenom, int id_client) {
-		super();
-		this.id_conseiller = id_conseiller;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.id_client = id_client;
-	}
+import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name = "CONSEILLER")
+public class ConseillerEntity implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@Column(name = "id_conseiller")
+	private int id_conseiller;
+	@Column(name = "nom")
+	private String nom;
+	@Column(name = "prenom")
+	private String prenom;
+	@Column(name = "adresse")
+	private int id_client;
+
+	
 	public int getId_conseiller() {
 		return id_conseiller;
 	}
@@ -39,5 +49,4 @@ public class Conseiller {
 	public void setId_client(int id_client) {
 		this.id_client = id_client;
 	}
-	
 }
