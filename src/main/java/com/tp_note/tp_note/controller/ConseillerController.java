@@ -1,5 +1,11 @@
 package com.tp_note.tp_note.controller;
 
+import com.tp_note.tp_note.ConseillerEntity;
+import com.tp_note.tp_note.ClientEntity;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +27,7 @@ import com.tp_note.tp_note.data.repository.ConseillerRepository;
 @RequestMapping("/conseillers")
 public class ConseillerController {
 
-    @Autowired
+    /*@Autowired
     private ConseillerRepository conseillerRepository;
 
     @GetMapping("/{conseiller_id}/clients")

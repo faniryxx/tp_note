@@ -48,7 +48,7 @@ CREATE TABLE client(
 
 CREATE TABLE contrat(
         id_contrat     Int  Auto_increment  NOT NULL ,
-        type_de_conrat Varchar (50) NOT NULL ,
+        type_de_contrat Varchar (50) NOT NULL ,
         description    Varchar (50) NOT NULL ,
         id_client      Int NOT NULL
 	,CONSTRAINT contrat_PK PRIMARY KEY (id_contrat)
