@@ -2,6 +2,19 @@
 #        Script MySQL.
 #------------------------------------------------------------
 
+#------------------------------------------------------------
+#        Creation de l utilisateur
+#------------------------------------------------------------
+
+CREATE DATABASE spring;
+
+CREATE USER 'spring'@'localhost' IDENTIFIED BY 'spring';
+
+GRANT ALL PRIVILEGES ON spring.* TO 'spring'@'localhost' WITH GRANT OPTION;
+
+FLUSH PRIVILEGES;
+
+USE spring;
 
 #------------------------------------------------------------
 # Table: contrat
