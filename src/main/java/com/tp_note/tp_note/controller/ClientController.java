@@ -21,29 +21,56 @@ public class ClientController {
         return clientService.getListeClients();
     }
 
+    /**
+     * Liste des contrats d'un client
+     * @param clientId
+     * @return
+     */
     @GetMapping("/clients/{client_id}/contrats")
     public List getContratsByClientId(@PathVariable(value = "client_id") Integer clientId) {
         return clientService.getListeContrats(clientId);
     }
 
+    /**
+     * Détails du contrat à l'ID contratId du client clientId
+     * @param clientId
+     * @param contratId
+     * @return
+     */
     @GetMapping("/clients/{client_id}/contrats/{contrat_id}")
     public List getContratDetails(@PathVariable(value = "client_id") Integer clientId,
                                   @PathVariable(value = "contrat_id") Integer contratId) {
         return clientService.getContratDetails(clientId, contratId);
     }
 
+    /**
+     * Ajout d'un client à la base MySQL
+     * @param client
+     * @return
+     */
     @PostMapping("/client")
     public ResponseEntity<ClientDTO> ajouterClient(@RequestBody ClientDTO client) {
         this.clientService.ajouterClient(client);
         return ResponseEntity.status(HttpStatus.CREATED).body(client);
     }
 
+    /**
+     * Suppression d'un client de la base MySQL
+     * @param clientId
+     * @return
+     */
     @DeleteMapping("/client/{client_id}")
     ResponseEntity.BodyBuilder supprimerClient(@PathVariable("client_id") Integer clientId) {
         this.clientService.supprimerClient(clientId);
         return ResponseEntity.status(HttpStatus.OK);
     }
 
+    /**
+     * Modification des attributs d'un client
+     * @param clientId
+     * @param client
+     * @return
+     */
     @PostMapping("/client/{client_id}")
     ResponseEntity.BodyBuilder modifierClient(@PathVariable("client_id") Integer clientId,
                                               @RequestBody ClientDTO client) {

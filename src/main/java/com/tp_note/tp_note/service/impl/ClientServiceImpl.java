@@ -12,30 +12,54 @@ public class ClientServiceImpl implements ClientService{
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	/**
+	 * Lister tous les clients de la base
+	 * @return
+	 */
 	@Override
 	public List getListeClients() {
 		String sql = "SELECT * FROM client;";
 		return this.jdbcTemplate.queryForList(sql);
 	}
 
+	/**
+	 * Lister les contrats associés au clientId
+	 * @param clientId
+	 * @return
+	 */
 	@Override
 	public List getListeContrats(Integer clientId) {
 		String sql = "SELECT * FROM contrat WHERE id_client="+clientId.toString()+";";
 		return this.jdbcTemplate.queryForList(sql);
 	}
 
+	/**
+	 * Détails du contrat à l'ID contratId du client clientId
+	 * @param clientId
+	 * @param contratId
+	 * @return
+	 */
 	@Override
 	public List getContratDetails(Integer clientId, Integer contratId) {
 		String sql = "SELECT * FROM contrat WHERE id_client="+clientId.toString()+" AND id_contrat="+contratId.toString()+";";
 		return this.jdbcTemplate.queryForList(sql);
 	}
 
+	/**
+	 * Lister tous les clients associés au conseillerId
+	 * @param conseillerId
+	 * @return
+	 */
 	@Override
 	public List getClientsFromConseiller(Integer conseillerId) {
 		String sql = "SELECT * FROM client WHERE id_conseiller="+conseillerId.toString()+";";
 		return this.jdbcTemplate.queryForList(sql);
 	}
 
+	/**
+	 * Ajout d'un client à la base MySQL
+	 * @param client
+	 */
 	@Override
 	public void ajouterClient(ClientDTO client) {
 		jdbcTemplate.update(
@@ -46,6 +70,10 @@ public class ClientServiceImpl implements ClientService{
 		);
 	}
 
+	/**
+	 * Suppression d'un client de la base MySQL
+	 * @param clientId
+	 */
 	@Override
 	public void supprimerClient(Integer clientId) {
 		jdbcTemplate.update(
@@ -55,6 +83,11 @@ public class ClientServiceImpl implements ClientService{
 		);
 	}
 
+	/**
+	 * Modification des attributs d'un client
+	 * @param clientId
+	 * @param client
+	 */
 	@Override
 	public void modifierClient(Integer clientId, ClientDTO client) {
 		jdbcTemplate.update(
