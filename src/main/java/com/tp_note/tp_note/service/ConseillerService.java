@@ -15,10 +15,14 @@ public interface ConseillerService {
 	 * @param id : l'id du conseiller
 	 * @return
 	 */
-	List<ClientEntity> findClientsByConseillerId(Integer id);
+	ConseillerDTO findClientsByConseillerId(Integer id);
 	
 	/**
-	 * Sauvegarde un client dans la base 
+	 * Sauvegarde un client dans la base associé à un id conseiller
 	 */
-	ClientEntity save(ClientEntity client);
+	ClientEntity save(Integer idConseiller, ClientEntity client);
+	/**
+	 * Sauvegarde un client avec un id dans la base associé à un id conseiller
+	 */
+	ClientEntity save(Integer idClient, Integer idConseiller, ClientEntity client);
 }

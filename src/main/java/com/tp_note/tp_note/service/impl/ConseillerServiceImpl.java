@@ -22,13 +22,23 @@ public class ConseillerServiceImpl implements ConseillerService {
 	private ClientRepository clientRepository;
 	
 	@Override
-	public List<ClientEntity> findClientsByConseillerId(Integer id) {
-		return null;//this.clientRepository.getClientsFromConseiller(id);
+	public ConseillerDTO findClientsByConseillerId(Integer id) {
+		ConseillerDTO conseiller = new ConseillerDTO(this.conseillerRepository.findById(id).get());
+		//TODO: get all client by conseiller ID
+		return null;//		this.clientRepository.getClientsFromConseiller(id);
 	}
 
 	@Override
-	public ClientEntity save(ClientEntity client) {
-		return null;//clientRepository.save(client);
+	public ClientEntity save(Integer idConseiller, ClientEntity client) {
+		client.setId_conseiller(idConseiller);
+		return clientRepository.save(client);
+	}
+
+	@Override
+	public ClientEntity save(Integer idClient, Integer idConseiller, ClientEntity client) {
+		client.setId_conseiller(idConseiller);
+		client.setId(idClient);
+		return clientRepository.save(client);
 	}
 
 	@Override

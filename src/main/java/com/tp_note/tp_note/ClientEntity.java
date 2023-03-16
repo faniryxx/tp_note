@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "CLIENT")
 public class ClientEntity {
 
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_client")
     private Integer id;
@@ -67,5 +67,11 @@ public class ClientEntity {
     public void setId_conseiller(Integer id_conseiller) {
         this.id_conseiller = id_conseiller;
     }
+    
+    @Override
+	public String toString() {
+		return "ClientEntity [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", id_conseiller=" + id_conseiller
+				+ "]";
+	}
 
 }
