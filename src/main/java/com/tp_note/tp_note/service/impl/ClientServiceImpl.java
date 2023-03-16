@@ -57,4 +57,9 @@ public class ClientServiceImpl implements ClientService{
 	public void ajouterClient(ClientDTO client) {
 		this.clientRepository.save(client.toEntity());
 	}
+
+	@Override
+	public void supprimerCompte(Integer clientId) {
+		clientRepository.deleteById(clientId);
+	}
 }

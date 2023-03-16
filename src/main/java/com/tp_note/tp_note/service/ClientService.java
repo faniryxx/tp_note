@@ -13,4 +13,5 @@ public interface ClientService {
 	List getContratDetails(Integer cliendId, Integer contratId);
 	List getClientsFromConseiller(Integer conseillerId);
 	void ajouterClient(ClientDTO client);
+	void supprimerCompte(Integer clientId);
 }

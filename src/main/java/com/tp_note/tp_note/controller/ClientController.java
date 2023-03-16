@@ -40,4 +40,10 @@ public class ClientController {
         this.clientService.ajouterClient(client);
         return ResponseEntity.status(HttpStatus.CREATED).body(client);
     }
+
+    @DeleteMapping("/client/{client_id}")
+    ResponseEntity.BodyBuilder supprimerCompte(@PathVariable("client_id") Integer clientId) {
+        this.clientService.supprimerCompte(clientId);
+        return ResponseEntity.status(HttpStatus.OK);
+    }
 }
