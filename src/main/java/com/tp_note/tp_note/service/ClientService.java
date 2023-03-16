@@ -6,8 +6,8 @@ import com.tp_note.tp_note.ContratEntity;
 
 public interface ClientService {
 	
-	List<ContratEntity> findContractsByClientId(Long id);
-	
-	ContratEntity findContractByClientIdAndContractId(Long clientId, Long contractId);
-
+	List getListeClients();
+	List getListeContrats(Integer clientId);
+	List getContratDetails(Integer cliendId, Integer contratId);
+	List getClientsFromConseiller(Integer conseillerId);
 }
