@@ -7,24 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
-@Entity
-@Table(name = "CLIENT")
 public class ClientEntity implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	@Id
-	@Column(name = "id_client")
 	private Integer id;
-	@Column(name = "nom")
 	private String nom;
-	@Column(name = "prenom")
 	private String prenom;
-	@Column(name = "adresse")
-	private String adresse;
 
 	/**
 	 * @return the id
@@ -66,20 +53,6 @@ public class ClientEntity implements Serializable {
 	 */
 	public void setPrenom(final String prenom) {
 		this.prenom = prenom;
-	}
-
-	/**
-	 * @return the adresse
-	 */
-	public String getAdresse() {
-		return this.adresse;
-	}
-
-	/**
-	 * @param adresse the adresse to set
-	 */
-	public void setAdresse(final String adresse) {
-		this.adresse = adresse;
 	}
 
 }
