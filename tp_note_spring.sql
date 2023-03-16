@@ -15,16 +15,13 @@ GRANT ALL PRIVILEGES ON spring.* TO 'spring'@'localhost' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 
 USE spring;
-
-#------------------------------------------------------------
-# Table: contrat
 #------------------------------------------------------------
 
-CREATE TABLE contrat(
-        id_contrat      Int  Auto_increment  NOT NULL ,
-        description     Varchar (50) NOT NULL ,
-        type_de_contrat Varchar (50) NOT NULL
-	,CONSTRAINT contrat_PK PRIMARY KEY (id_contrat)
+CREATE TABLE Conseiller(
+        id_conseiller Int  Auto_increment  NOT NULL ,
+        nom           Varchar (50) NOT NULL ,
+        prenom        Varchar (50) NOT NULL
+	,CONSTRAINT Conseiller_PK PRIMARY KEY (id_conseiller)
 )ENGINE=InnoDB;
 
 
@@ -33,27 +30,27 @@ CREATE TABLE contrat(
 #------------------------------------------------------------
 
 CREATE TABLE client(
-        id_client  Int  Auto_increment  NOT NULL ,
-        nom        Varchar (50) NOT NULL ,
-        prenom     Varchar (50) NOT NULL ,
-        id_contrat Int NOT NULL
+        id_client     Int  Auto_increment  NOT NULL ,
+        nom           Varchar (50) NOT NULL ,
+        prenom        Varchar (50) NOT NULL ,
+        id_conseiller Int NOT NULL
 	,CONSTRAINT client_PK PRIMARY KEY (id_client)
 
-	,CONSTRAINT client_contrat_FK FOREIGN KEY (id_contrat) REFERENCES contrat(id_contrat)
+	,CONSTRAINT client_Conseiller_FK FOREIGN KEY (id_conseiller) REFERENCES Conseiller(id_conseiller)
 )ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
-# Table: conseiller
+# Table: contrat
 #------------------------------------------------------------
 
-CREATE TABLE conseiller(
-        id_conseiller Int  Auto_increment  NOT NULL ,
-        nom           Varchar (50) NOT NULL ,
-        prenom        Varchar (50) NOT NULL ,
-        id_client     Int NOT NULL
-	,CONSTRAINT conseiller_PK PRIMARY KEY (id_conseiller)
+CREATE TABLE contrat(
+        id_contrat     Int  Auto_increment  NOT NULL ,
+        type_de_conrat Varchar (50) NOT NULL ,
+        description    Varchar (50) NOT NULL ,
+        id_client      Int NOT NULL
+	,CONSTRAINT contrat_PK PRIMARY KEY (id_contrat)
 
-	,CONSTRAINT conseiller_client_FK FOREIGN KEY (id_client) REFERENCES client(id_client)
+	,CONSTRAINT contrat_client_FK FOREIGN KEY (id_client) REFERENCES client(id_client)
 )ENGINE=InnoDB;
 
