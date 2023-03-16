@@ -7,8 +7,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ClientRepository extends JpaRepository<ClientEntity, Integer> {
 
-	/*
-	public List getClientsFromConseiller(Integer conseillerId) {
-		return clientService.getClientsFromConseiller(conseillerId);
-	}*/
 }

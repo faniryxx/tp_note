@@ -1,16 +1,7 @@
 package com.tp_note.tp_note.service.impl;
-
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import com.tp_note.tp_note.model.dto.ClientDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import com.tp_note.tp_note.ClientEntity;
-import com.tp_note.tp_note.ContratEntity;
-import com.tp_note.tp_note.data.repository.ClientRepository;
 import com.tp_note.tp_note.service.ClientService;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -19,20 +10,12 @@ import org.springframework.stereotype.Service;
 public class ClientServiceImpl implements ClientService{
 
 	@Autowired
-	private ClientRepository clientRepository;
-
-	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	/*@Override
+	@Override
 	public List getListeClients() {
 		String sql = "SELECT * FROM client;";
 		return this.jdbcTemplate.queryForList(sql);
-	}*/
-
-	@Override
-	public List<ClientDTO> getListeClients() {
-		return this.clientRepository.findAll().stream().map(ClientDTO::new).collect(Collectors.toList());
 	}
 
 	@Override
@@ -55,11 +38,20 @@ public class ClientServiceImpl implements ClientService{
 
 	@Override
 	public void ajouterClient(ClientDTO client) {
-		this.clientRepository.save(client.toEntity());
+		jdbcTemplate.update(
+				"INSERT INTO spring.client " +
+						"(nom, prenom, id_conseiller) " +
+						"VALUES (?, ?, ?)",
+				client.getNom(), client.getPrenom(), client.getId_conseiller().toString()
+		);
 	}
 
 	@Override
 	public void supprimerCompte(Integer clientId) {
-		clientRepository.deleteById(clientId);
+		jdbcTemplate.update(
+				"DELETE FROM spring.client "+
+				"WHERE id_client=(?);",
+				clientId
+		);
 	}
 }
