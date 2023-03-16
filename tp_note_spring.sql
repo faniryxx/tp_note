@@ -10,7 +10,7 @@ DROP DATABASE IF EXISTS spring;
 
 CREATE DATABASE spring;
 
-CREATE USER IF NOT EXISTS 'spring'@'localhost' IDENTIFIED BY 'spring';
+CREATE USER 'spring'@'localhost' IDENTIFIED BY 'spring';
 
 GRANT ALL PRIVILEGES ON spring.* TO 'spring'@'localhost' WITH GRANT OPTION;
 

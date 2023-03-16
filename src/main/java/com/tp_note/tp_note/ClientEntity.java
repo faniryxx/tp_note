@@ -23,8 +23,8 @@ public class ClientEntity implements Serializable {
 	private String nom;
 	@Column(name = "prenom")
 	private String prenom;
-	@Column(name = "adresse")
-	private String adresse;
+	@Column(name = "id_conseiller")
+	private Integer id_conseiller;
 
 	/**
 	 * @return the id
@@ -69,17 +69,17 @@ public class ClientEntity implements Serializable {
 	}
 
 	/**
-	 * @return the adresse
+	 * @return the id_conseiller
 	 */
-	public String getAdresse() {
-		return this.adresse;
+	public Integer getIdConseiller() {
+		return this.id_conseiller;
 	}
 
 	/**
-	 * @param adresse the adresse to set
+	 * @param id_conseiller the id_conseiller to set
 	 */
-	public void setAdresse(final String adresse) {
-		this.adresse = adresse;
+	public void setIdConseiller(final Integer id_conseiller) {
+		this.id_conseiller = id_conseiller;
 	}
 
 }
