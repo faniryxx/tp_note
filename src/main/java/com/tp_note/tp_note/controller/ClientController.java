@@ -29,7 +29,7 @@ public class ClientController {
         return clientRepository.getContrats(clientId);
     }
 
-    @GetMapping("/{client_id}/contrats/{contrat_id}")
+    @GetMapping("/clients/{client_id}/contrats/{contrat_id}")
     public List getContratDetails(@PathVariable(value = "client_id") Integer clientId,
                                   @PathVariable(value = "contrat_id") Integer contratId) {
         return clientRepository.findContratByIdAndContratId(clientId, contratId);
