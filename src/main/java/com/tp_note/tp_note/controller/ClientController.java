@@ -22,7 +22,7 @@ public class ClientController {
 
     // Afficher tous les clients
     @GetMapping("/clients")
-    public String listerClients() {
+    public List listerClients() {
         return clientRepository.listerClients();
     }
 

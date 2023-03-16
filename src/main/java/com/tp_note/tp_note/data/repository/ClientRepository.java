@@ -13,13 +13,13 @@ public class ClientRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	public String listerClients(){
+	public List listerClients(){
 		String sql = "SELECT * FROM client;";
-		return this.jdbcTemplate.queryForList(sql).toString();
+		return this.jdbcTemplate.queryForList(sql);
 	}
 
-	public ClientEntity findById(Long clientId){
+	/*public ClientEntity findById(Long clientId){
 		String sql = "SELECT * FROM client WHERE id_client="+clientId.toString()+";";
 		return this.jdbcTemplate.queryForObject(sql, ClientEntity.class);
-	}
+	}*/
 }
