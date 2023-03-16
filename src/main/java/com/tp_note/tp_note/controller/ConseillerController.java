@@ -1,3 +1,13 @@
+package com.tp_note.tp_note.controller;
+
+import com.tp_note.tp_note.Conseiller;
+import com.tp_note.tp_note.Client;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @RestController
 @RequestMapping("/conseillers")
 public class ConseillerController {
@@ -33,8 +43,6 @@ public class ConseillerController {
 
         client.setNom(clientDetails.getNom());
         client.setPrenom(clientDetails.getPrenom());
-        client.setDateNaissance(clientDetails.getDateNaissance());
-        client.setAdresse(clientDetails.getAdresse());
 
         return clientRepository.save(client);
     }
