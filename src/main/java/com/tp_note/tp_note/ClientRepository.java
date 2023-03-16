@@ -10,5 +10,8 @@ public class ClientRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-
+	public Client findById(Long clientId){
+		String sql = "SELECT * FROM client WHERE id_client="+clientId.toString()+";";
+		return this.jdbcTemplate.queryForObject(sql, Client.class);
+	}
 }
