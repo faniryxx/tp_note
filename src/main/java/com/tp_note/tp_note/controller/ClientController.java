@@ -2,8 +2,9 @@ package com.tp_note.tp_note.controller;
 
 import com.tp_note.tp_note.Client;
 import com.tp_note.tp_note.Conseiller;
-import com.tp_note.tp_note.ClientRepository;
 import com.tp_note.tp_note.Contrat;
+import com.tp_note.tp_note.data.repository.ClientRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

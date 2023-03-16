@@ -1,4 +1,4 @@
-package com.tp_note.tp_note;
+package com.tp_note.tp_note.data.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
