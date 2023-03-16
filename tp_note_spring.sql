@@ -19,11 +19,11 @@ FLUSH PRIVILEGES;
 USE spring;
 #------------------------------------------------------------
 
-CREATE TABLE Conseiller(
+CREATE TABLE conseiller(
         id_conseiller Int  Auto_increment  NOT NULL ,
         nom           Varchar (50) NOT NULL ,
         prenom        Varchar (50) NOT NULL
-	,CONSTRAINT Conseiller_PK PRIMARY KEY (id_conseiller)
+	,CONSTRAINT conseiller_PK PRIMARY KEY (id_conseiller)
 )ENGINE=InnoDB;
 
 
@@ -38,7 +38,7 @@ CREATE TABLE client(
         id_conseiller Int NOT NULL
 	,CONSTRAINT client_PK PRIMARY KEY (id_client)
 
-	,CONSTRAINT client_Conseiller_FK FOREIGN KEY (id_conseiller) REFERENCES Conseiller(id_conseiller)
+	,CONSTRAINT client_conseiller_FK FOREIGN KEY (id_conseiller) REFERENCES conseiller(id_conseiller)
 )ENGINE=InnoDB;
 
 
