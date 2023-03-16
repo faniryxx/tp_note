@@ -1,58 +1,66 @@
 package com.tp_note.tp_note;
 
-import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+public class ClientEntity {
 
-public class ClientEntity implements Serializable {
+    private Integer id;
+    private String nom;
+    private String prenom;
+    private Integer id_conseiller;
+    /**
+     * @return the id
+     */
+    public Integer getId() {
+        return this.id;
+    }
 
-	private Integer id;
-	private String nom;
-	private String prenom;
+    /**
+     * @param id the id to set
+     */
+    public void setId(final Integer id) {
+        this.id = id;
+    }
 
-	/**
-	 * @return the id
-	 */
-	public Integer getId() {
-		return this.id;
-	}
+    /**
+     * @return the nom
+     */
+    public String getNom() {
+        return this.nom;
+    }
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(final Integer id) {
-		this.id = id;
-	}
+    /**
+     * @param nom the nom to set
+     */
+    public void setNom(final String nom) {
+        this.nom = nom;
+    }
 
-	/**
-	 * @return the nom
-	 */
-	public String getNom() {
-		return this.nom;
-	}
+    /**
+     * @return the prenom
+     */
+    public String getPrenom() {
+        return this.prenom;
+    }
 
-	/**
-	 * @param nom the nom to set
-	 */
-	public void setNom(final String nom) {
-		this.nom = nom;
-	}
+    /**
+     * @param prenom the prenom to set
+     */
+    public void setPrenom(final String prenom) {
+        this.prenom = prenom;
+    }
 
-	/**
-	 * @return the prenom
-	 */
-	public String getPrenom() {
-		return this.prenom;
-	}
+    /**
+     * @return the id_conseiller
+     */
+    public Integer getIdConseiller() {
+        return this.id_conseiller;
+    }
 
-	/**
-	 * @param prenom the prenom to set
-	 */
-	public void setPrenom(final String prenom) {
-		this.prenom = prenom;
-	}
+    /**
+     * @param id_conseiller the id_conseiller to set
+     */
+    public void setIdConseiller(final Integer id_conseiller) {
+        this.id_conseiller = id_conseiller;
+    }
 
 }
