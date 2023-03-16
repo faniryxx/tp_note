@@ -34,9 +34,4 @@ public class ClientController {
                                   @PathVariable(value = "contrat_id") Integer contratId) {
         return clientRepository.findContratByIdAndContratId(clientId, contratId);
     }
-
-    /*@PostMapping("/client")
-    public ResponseEntity<ClientEntity> addClient(@RequestBody ClientEntity client) {
-        this.clientRepository.
-    }*/
 }

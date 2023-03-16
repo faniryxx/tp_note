@@ -11,5 +11,4 @@ public interface ClientService {
 	List getListeContrats(Integer clientId);
 	List getContratDetails(Integer cliendId, Integer contratId);
 	List getClientsFromConseiller(Integer conseillerId);
-	void addClient(ClientEntity client);
 }
