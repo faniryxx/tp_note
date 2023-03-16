@@ -1,15 +1,14 @@
 package com.tp_note.tp_note.controller;
 
+import ch.qos.logback.core.net.server.Client;
 import com.tp_note.tp_note.ClientEntity;
 import com.tp_note.tp_note.ConseillerEntity;
 import com.tp_note.tp_note.ContratEntity;
 import com.tp_note.tp_note.data.repository.ClientRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,5 +33,10 @@ public class ClientController {
     public List getContratDetails(@PathVariable(value = "client_id") Integer clientId,
                                   @PathVariable(value = "contrat_id") Integer contratId) {
         return clientRepository.findContratByIdAndContratId(clientId, contratId);
+    }
+
+    @PostMapping("/client")
+    public ResponseEntity<ClientEntity> addClient(@RequestBody ClientEntity client) {
+        this.clientRepository.
     }
 }

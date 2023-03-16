@@ -2,6 +2,7 @@ package com.tp_note.tp_note.service;
 
 import java.util.List;
 
+import com.tp_note.tp_note.ClientEntity;
 import com.tp_note.tp_note.ContratEntity;
 
 public interface ClientService {
@@ -10,4 +11,5 @@ public interface ClientService {
 	List getListeContrats(Integer clientId);
 	List getContratDetails(Integer cliendId, Integer contratId);
 	List getClientsFromConseiller(Integer conseillerId);
+	void addClient(ClientEntity client);
 }
