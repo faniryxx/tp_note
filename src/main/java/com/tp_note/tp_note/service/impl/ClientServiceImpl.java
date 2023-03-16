@@ -9,27 +9,36 @@ import com.tp_note.tp_note.ClientEntity;
 import com.tp_note.tp_note.ContratEntity;
 import com.tp_note.tp_note.data.repository.ClientRepository;
 import com.tp_note.tp_note.service.ClientService;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ClientServiceImpl implements ClientService{
 
 	@Autowired
-	private ClientRepository clientRepository;
-	
-	
+	private JdbcTemplate jdbcTemplate;
+
 	@Override
-	public List<ContratEntity> findContractsByClientId(Long id) {
-		ClientEntity entity = this.clientRepository.findById(id);
-		//TODO: entity.getContracts()
-		return null;
+	public List getListeClients() {
+		String sql = "SELECT * FROM client;";
+		return this.jdbcTemplate.queryForList(sql);
 	}
 
 	@Override
-	public ContratEntity findContractByClientIdAndContractId(Long clientId, Long contractId) {
-		
-		return null;
+	public List getListeContrats(Integer clientId) {
+		String sql = "SELECT * FROM contrat WHERE id_client="+clientId.toString()+";";
+		return this.jdbcTemplate.queryForList(sql);
 	}
 
-	
+	@Override
+	public List getContratDetails(Integer clientId, Integer contratId) {
+		String sql = "SELECT * FROM contrat WHERE id_client="+clientId.toString()+" AND id_contrat="+contratId.toString()+";";
+		return this.jdbcTemplate.queryForList(sql);
+	}
 
-
+	@Override
+	public List getClientsFromConseiller(Integer conseillerId) {
+		String sql = "SELECT * FROM client WHERE id_conseiller="+conseillerId.toString()+";";
+		return this.jdbcTemplate.queryForList(sql);
+	}
 }
