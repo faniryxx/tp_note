@@ -40,7 +40,7 @@ public class ClientController {
 
     @DeleteMapping("/client/{client_id}")
     ResponseEntity.BodyBuilder supprimerCompte(@PathVariable("client_id") Integer clientId) {
-        this.clientService.supprimerCompte(clientId);
+        this.clientService.supprimerClient(clientId);
         return ResponseEntity.status(HttpStatus.OK);
     }
 }

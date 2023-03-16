@@ -47,7 +47,7 @@ public class ClientServiceImpl implements ClientService{
 	}
 
 	@Override
-	public void supprimerCompte(Integer clientId) {
+	public void supprimerClient(Integer clientId) {
 		jdbcTemplate.update(
 				"DELETE FROM spring.client "+
 				"WHERE id_client=(?);",
