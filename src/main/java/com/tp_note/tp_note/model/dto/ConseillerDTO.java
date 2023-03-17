@@ -67,5 +67,4 @@ public class ConseillerDTO implements Serializable {
 		this.clients = clients;
 	}
 	
-	
 }

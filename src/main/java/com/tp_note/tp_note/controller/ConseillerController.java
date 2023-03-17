@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tp_note.tp_note.ClientEntity;
 import com.tp_note.tp_note.model.dto.ClientDTO;
 import com.tp_note.tp_note.model.dto.ConseillerDTO;
-import com.tp_note.tp_note.service.ClientService;
 import com.tp_note.tp_note.service.ConseillerService;
 
 
