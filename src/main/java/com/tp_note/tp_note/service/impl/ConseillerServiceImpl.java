@@ -81,5 +81,10 @@ public class ConseillerServiceImpl implements ConseillerService {
 		contrat.setId_contrat(contratId);
 		return new ContratDTO(contratRepository.save(contrat.toEntity()));
 	}
+	
+	@Override
+	public Integer supprimerClient(Integer clientId) {
+		return clientRepository.supprimerClient(clientId);
+	}
 
 }

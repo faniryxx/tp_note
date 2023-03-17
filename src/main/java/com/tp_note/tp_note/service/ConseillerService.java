@@ -1,8 +1,5 @@
 package com.tp_note.tp_note.service;
 
-import java.util.List;
-import java.util.Map;
-
 import com.tp_note.tp_note.model.dto.ClientDTO;
 import com.tp_note.tp_note.model.dto.ConseillerDTO;
 import com.tp_note.tp_note.model.dto.ContratDTO;
@@ -30,4 +27,6 @@ public interface ConseillerService {
 
 	ContratDTO ajouterContrat(ContratDTO contrat);
 	ContratDTO updateContratDetails(Integer clientId, Integer contratId, ContratDTO contrat);
+	Integer supprimerClient(Integer clientId);
+	
 }
