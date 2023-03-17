@@ -7,12 +7,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tp_note.tp_note.ClientEntity;
 import com.tp_note.tp_note.data.repository.ClientRepository;
 import com.tp_note.tp_note.data.repository.ConseillerRepository;
 import com.tp_note.tp_note.model.dto.ClientDTO;
 import com.tp_note.tp_note.model.dto.ConseillerDTO;
-import com.tp_note.tp_note.service.ClientService;
 import com.tp_note.tp_note.service.ConseillerService;
 
 @Service
@@ -42,7 +40,6 @@ public class ConseillerServiceImpl implements ConseillerService {
 		}
 		
 		conseiller.setClients(clients);
-		System.out.println(conseiller);
 		return conseiller;
 	}
 
