@@ -34,13 +34,13 @@ public class ConseillerController {
     }
 	
     @GetMapping("/{conseiller_id}/clients")
-    public List<ClientEntity> getClientsByConseillerId(@PathVariable(value = "conseiller_id") Integer conseillerId) {
+    public ConseillerDTO getClientsByConseillerId(@PathVariable(value = "conseiller_id") Integer conseillerId) {
         return conseillerService.findClientsByConseillerId(conseillerId);
     }
 
     @PostMapping("/{conseiller_id}/clients")
     public ClientEntity addClient(@PathVariable(value = "conseiller_id") Integer conseillerId, @RequestBody ClientEntity client) {
-        return conseillerService.save(client);
+        return conseillerService.save(conseillerId, client);
     }
 
     /**
@@ -53,9 +53,7 @@ public class ConseillerController {
     @PutMapping("/{conseiller_id}/clients/{client_id}")
     public ClientEntity updateClient(@PathVariable(value = "conseiller_id") Integer conseillerId,
                                @PathVariable(value = "client_id") Integer clientId, @RequestBody ClientEntity clientDetails) {
-    	clientDetails.setId(clientId);
-    	clientDetails.setId_conseiller(conseillerId);
-        return conseillerService.save(clientDetails);
+        return conseillerService.save(clientId, conseillerId, clientDetails);
     }
 
    /* @DeleteMapping("/{conseiller_id}/clients/{client_id}")
