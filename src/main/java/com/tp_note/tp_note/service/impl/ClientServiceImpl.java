@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tp_note.tp_note.data.repository.ClientRepository;
-import com.tp_note.tp_note.model.dto.ClientDTO;
 import com.tp_note.tp_note.service.ClientService;
 
 @Service

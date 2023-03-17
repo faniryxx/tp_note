@@ -1,13 +1,13 @@
 package com.tp_note.tp_note.data.repository;
 
-import com.tp_note.tp_note.model.dto.ClientDTO;
-import com.tp_note.tp_note.model.dto.ContratDTO;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Map;
+import com.tp_note.tp_note.model.dto.ClientDTO;
 
 @Repository
 public class ClientRepository {
