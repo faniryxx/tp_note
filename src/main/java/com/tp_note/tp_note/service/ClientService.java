@@ -10,7 +10,7 @@ public interface ClientService {
 	
 	List getListeClients();
 	List getListeContrats(Integer clientId);
-	List getContratDetails(Integer cliendId, Integer contratId);
+	List getContratDetails(Integer clientId, Integer contratId);
 	List getClientsFromConseiller(Integer conseillerId);
 	void ajouterClient(ClientDTO client);
 	void supprimerClient(Integer clientId);

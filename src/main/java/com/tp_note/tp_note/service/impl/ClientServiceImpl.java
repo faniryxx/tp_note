@@ -1,5 +1,7 @@
 package com.tp_note.tp_note.service.impl;
 import java.util.List;
+
+import com.tp_note.tp_note.data.repository.ClientRepository;
 import com.tp_note.tp_note.model.dto.ClientDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.tp_note.tp_note.service.ClientService;
@@ -10,91 +12,40 @@ import org.springframework.stereotype.Service;
 public class ClientServiceImpl implements ClientService{
 
 	@Autowired
-	private JdbcTemplate jdbcTemplate;
+	private ClientRepository clientRepository;
 
-	/**
-	 * Lister tous les clients de la base
-	 * @return
-	 */
 	@Override
 	public List getListeClients() {
-		String sql = "SELECT * FROM client;";
-		return this.jdbcTemplate.queryForList(sql);
+		return clientRepository.getListeClients();
 	}
 
-	/**
-	 * Lister les contrats associés au clientId
-	 * @param clientId
-	 * @return
-	 */
 	@Override
 	public List getListeContrats(Integer clientId) {
-		String sql = "SELECT * FROM contrat WHERE id_client="+clientId.toString()+";";
-		return this.jdbcTemplate.queryForList(sql);
+		return clientRepository.getListeContrats(clientId);
 	}
 
-	/**
-	 * Détails du contrat à l'ID contratId du client clientId
-	 * @param clientId
-	 * @param contratId
-	 * @return
-	 */
 	@Override
 	public List getContratDetails(Integer clientId, Integer contratId) {
-		String sql = "SELECT * FROM contrat WHERE id_client="+clientId.toString()+" AND id_contrat="+contratId.toString()+";";
-		return this.jdbcTemplate.queryForList(sql);
+		return clientRepository.getContratDetails(clientId, contratId);
 	}
 
-	/**
-	 * Lister tous les clients associés au conseillerId
-	 * @param conseillerId
-	 * @return
-	 */
 	@Override
 	public List getClientsFromConseiller(Integer conseillerId) {
-		String sql = "SELECT * FROM client WHERE id_conseiller="+conseillerId.toString()+";";
-		return this.jdbcTemplate.queryForList(sql);
+		return clientRepository.getClientsFromConseiller(conseillerId);
 	}
 
-	/**
-	 * Ajout d'un client à la base MySQL
-	 * @param client
-	 */
 	@Override
 	public void ajouterClient(ClientDTO client) {
-		jdbcTemplate.update(
-				"INSERT INTO spring.client " +
-						"(nom, prenom, id_conseiller) " +
-						"VALUES (?, ?, ?)",
-				client.getNom(), client.getPrenom(), client.getId_conseiller().toString()
-		);
+		clientRepository.ajouterClient(client);
 	}
 
-	/**
-	 * Suppression d'un client de la base MySQL
-	 * @param clientId
-	 */
 	@Override
 	public void supprimerClient(Integer clientId) {
-		jdbcTemplate.update(
-				"DELETE FROM spring.client "+
-				"WHERE id_client=(?);",
-				clientId
-		);
+		clientRepository.supprimerClient(clientId);
 	}
 
-	/**
-	 * Modification des attributs d'un client
-	 * @param clientId
-	 * @param client
-	 */
 	@Override
 	public void modifierClient(Integer clientId, ClientDTO client) {
-		jdbcTemplate.update(
-				"UPDATE spring.client " +
-						"SET nom=(?), prenom=(?), id_conseiller=(?) " +
-						"WHERE id_client=(?); ",
-				client.getNom(), client.getPrenom(), client.getId_conseiller(), clientId
-		);
+		clientRepository.modifierClient(clientId, client);
 	}
 }
