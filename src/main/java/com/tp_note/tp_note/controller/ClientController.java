@@ -1,48 +1,26 @@
 package com.tp_note.tp_note.controller;
-import com.tp_note.tp_note.data.repository.ClientRepository;
+import java.util.List;
+import java.util.Map;
 
-import com.tp_note.tp_note.model.dto.ClientDTO;
-import com.tp_note.tp_note.model.dto.ContratDTO;
-import com.tp_note.tp_note.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.tp_note.tp_note.model.dto.ClientDTO;
+import com.tp_note.tp_note.service.ClientService;
 
 @RestController
 public class ClientController {
 
     @Autowired
     private ClientService clientService;
-
-    @GetMapping("/clients")
-    public List listClients() {
-        return clientService.getListeClients();
-    }
-
-    /**
-     * Liste des contrats d'un client
-     * @param clientId
-     * @return
-     */
-    @GetMapping("/clients/{client_id}/contrats")
-    public List getContratsByClientId(@PathVariable(value = "client_id") Integer clientId) {
-        return clientService.getListeContrats(clientId);
-    }
-
-    /**
-     * Détails du contrat à l'ID contratId du client clientId
-     * @param clientId
-     * @param contratId
-     * @return
-     */
-    @GetMapping("/clients/{client_id}/contrats/{contrat_id}")
-    public List getContratDetails(@PathVariable(value = "client_id") Integer clientId,
-                                  @PathVariable(value = "contrat_id") Integer contratId) {
-        return clientService.getContratDetails(clientId, contratId);
-    }
 
     /**
      * Ajout d'un client à la base MySQL
@@ -61,9 +39,14 @@ public class ClientController {
      * @return
      */
     @DeleteMapping("/client/{client_id}")
-    ResponseEntity.BodyBuilder supprimerClient(@PathVariable("client_id") Integer clientId) {
-        this.clientService.supprimerClient(clientId);
-        return ResponseEntity.status(HttpStatus.OK);
+    ResponseEntity<String> supprimerClient(@PathVariable("client_id") Integer clientId) {
+        int rows = this.clientService.supprimerClient(clientId);
+        if(rows > 0) {
+            return ResponseEntity.ok("Client d'id " + clientId + " supprimé");
+        }else {
+            return ResponseEntity.noContent().build();
+        }
+
     }
 
     /**
@@ -72,35 +55,32 @@ public class ClientController {
      * @param client
      * @return
      */
-    @PostMapping("/client/{client_id}")
-    ResponseEntity.BodyBuilder modifierClient(@PathVariable("client_id") Integer clientId,
+    @PutMapping("/client/{client_id}")
+    ClientDTO modifierClient(@PathVariable("client_id") Integer clientId,
                                               @RequestBody ClientDTO client) {
-        this.clientService.modifierClient(clientId, client);
-        return ResponseEntity.status(HttpStatus.OK);
+       
+        return this.clientService.modifierClient(clientId, client);
     }
-
+    
     /**
-     * Ajouter un contrat à un client
-     * @param contrat
+     * Liste des contrats d'un client
+     * @param clientId
      * @return
      */
-    @PostMapping("/clients/contrats")
-    ResponseEntity.BodyBuilder ajouterContrat(@RequestBody ContratDTO contrat) {
-        this.clientService.ajouterContrat(contrat);
-        return ResponseEntity.status(HttpStatus.OK);
+    @GetMapping("/client/{client_id}/contrats/")
+    public List<Map<String, Object>> getContratsByClientId(@PathVariable(value = "client_id") Integer clientId) {
+        return clientService.getListeContrats(clientId);
     }
 
     /**
-     * Modification d'un contrat
+     * Détails du contrat à l'ID contratId du client clientId
      * @param clientId
      * @param contratId
      * @return
      */
-    @PostMapping("/clients/{client_id}/contrats/{contrat_id}")
-    ResponseEntity.BodyBuilder updateContratDetails(@PathVariable(value = "client_id") Integer clientId,
-                                  @PathVariable(value = "contrat_id") Integer contratId,
-                                     @RequestBody ContratDTO contrat) {
-        this.clientService.updateContratDetails(clientId, contratId, contrat);
-        return ResponseEntity.status(HttpStatus.OK);
+    @GetMapping("/client/{client_id}/contrat/{contrat_id}")
+    public List<Map<String, Object>> getContratDetails(@PathVariable(value = "client_id") Integer clientId,
+                                  @PathVariable(value = "contrat_id") Integer contratId) {
+        return clientService.getContratDetails(clientId, contratId);
     }
 }

@@ -3,7 +3,7 @@ package com.tp_note.tp_note.model.dto;
 import java.io.Serializable;
 import java.util.List;
 
-import com.tp_note.tp_note.ConseillerEntity;
+import com.tp_note.tp_note.data.Entity.ConseillerEntity;
 
 
 public class ConseillerDTO implements Serializable {

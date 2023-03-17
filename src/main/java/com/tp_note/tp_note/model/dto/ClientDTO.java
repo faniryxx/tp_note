@@ -2,7 +2,7 @@ package com.tp_note.tp_note.model.dto;
 
 import java.io.Serializable;
 
-import com.tp_note.tp_note.ClientEntity;
+import com.tp_note.tp_note.data.Entity.ClientEntity;
 
 public class ClientDTO implements Serializable {
 	

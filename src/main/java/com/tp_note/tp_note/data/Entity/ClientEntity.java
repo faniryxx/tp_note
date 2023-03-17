@@ -1,4 +1,4 @@
-package com.tp_note.tp_note;
+package com.tp_note.tp_note.data.Entity;
 
 import javax.persistence.*;
 

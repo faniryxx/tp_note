@@ -1,13 +1,13 @@
 package com.tp_note.tp_note.service.impl;
 import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.tp_note.tp_note.data.repository.ClientRepository;
 import com.tp_note.tp_note.model.dto.ClientDTO;
-import com.tp_note.tp_note.model.dto.ContratDTO;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.tp_note.tp_note.service.ClientService;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Service;
 
 @Service
 public class ClientServiceImpl implements ClientService{
@@ -16,47 +16,41 @@ public class ClientServiceImpl implements ClientService{
 	private ClientRepository clientRepository;
 
 	@Override
-	public List getListeClients() {
+	public List<Map<String, Object>> getListeClients() {
 		return clientRepository.getListeClients();
 	}
 
 	@Override
-	public List getListeContrats(Integer clientId) {
-		return clientRepository.getListeContrats(clientId);
-	}
-
-	@Override
-	public List getContratDetails(Integer clientId, Integer contratId) {
-		return clientRepository.getContratDetails(clientId, contratId);
-	}
-
-	@Override
-	public List getClientsFromConseiller(Integer conseillerId) {
+	public List<Map<String, Object>> getClientsFromConseiller(Integer conseillerId) {
 		return clientRepository.getClientsFromConseiller(conseillerId);
 	}
 
 	@Override
-	public void ajouterClient(ClientDTO client) {
+	public ClientDTO ajouterClient(ClientDTO client) {
 		clientRepository.ajouterClient(client);
+		return client;
 	}
 
 	@Override
-	public void supprimerClient(Integer clientId) {
-		clientRepository.supprimerClient(clientId);
+	public Integer supprimerClient(Integer clientId) {
+		return clientRepository.supprimerClient(clientId);
 	}
 
 	@Override
-	public void modifierClient(Integer clientId, ClientDTO client) {
+	public ClientDTO modifierClient(Integer clientId, ClientDTO client) {
 		clientRepository.modifierClient(clientId, client);
+		client.setId(clientId);
+		return client;
+	}
+	
+	@Override
+	public List<Map<String, Object>> getListeContrats(Integer clientId) {
+		return clientRepository.getListeContrats(clientId);
 	}
 
 	@Override
-	public void ajouterContrat(ContratDTO contrat) {
-		clientRepository.ajouterContrat(contrat);
+	public List<Map<String, Object>> getContratDetails(Integer clientId, Integer contratId) {
+		return clientRepository.getContratDetails(clientId, contratId);
 	}
 
-	@Override
-	public void updateContratDetails(Integer clientId, Integer contratId, ContratDTO contrat) {
-		clientRepository.updateContratDetails(clientId, contratId, contrat);
-	}
 }
