@@ -102,4 +102,13 @@ public class ClientRepository {
                 contrat.getType_de_contrat(), contrat.getDescription(), contrat.getId_client()
         );
     }
+
+    public void updateContratDetails(Integer clientId, Integer contratId, ContratDTO contrat) {
+        jdbcTemplate.update(
+                "UPDATE spring.contrat " +
+                        "SET type_de_contrat=(?), description=(?), id_client=(?) " +
+                        "WHERE id_contrat=(?);",
+                contrat.getType_de_contrat(), contrat.getDescription(), clientId.toString(), contratId.toString()
+        );
+    }
 }

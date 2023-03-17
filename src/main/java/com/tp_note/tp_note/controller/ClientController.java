@@ -79,10 +79,28 @@ public class ClientController {
         return ResponseEntity.status(HttpStatus.OK);
     }
 
+    /**
+     * Ajouter un contrat à un client
+     * @param contrat
+     * @return
+     */
     @PostMapping("/clients/contrats")
     ResponseEntity.BodyBuilder ajouterContrat(@RequestBody ContratDTO contrat) {
         this.clientService.ajouterContrat(contrat);
         return ResponseEntity.status(HttpStatus.OK);
     }
 
+    /**
+     * Modification d'un contrat
+     * @param clientId
+     * @param contratId
+     * @return
+     */
+    @PostMapping("/clients/{client_id}/contrats/{contrat_id}")
+    ResponseEntity.BodyBuilder updateContratDetails(@PathVariable(value = "client_id") Integer clientId,
+                                  @PathVariable(value = "contrat_id") Integer contratId,
+                                     @RequestBody ContratDTO contrat) {
+        this.clientService.updateContratDetails(clientId, contratId, contrat);
+        return ResponseEntity.status(HttpStatus.OK);
+    }
 }

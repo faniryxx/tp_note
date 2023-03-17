@@ -54,4 +54,9 @@ public class ClientServiceImpl implements ClientService{
 	public void ajouterContrat(ContratDTO contrat) {
 		clientRepository.ajouterContrat(contrat);
 	}
+
+	@Override
+	public void updateContratDetails(Integer clientId, Integer contratId, ContratDTO contrat) {
+		clientRepository.updateContratDetails(clientId, contratId, contrat);
+	}
 }

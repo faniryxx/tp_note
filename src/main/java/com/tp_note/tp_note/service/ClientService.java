@@ -17,4 +17,5 @@ public interface ClientService {
 	void supprimerClient(Integer clientId);
 	void modifierClient(Integer clientId, ClientDTO client);
 	void ajouterContrat(ContratDTO contrat);
+	void updateContratDetails(Integer clientId, Integer contratId, ContratDTO contrat);
 }
