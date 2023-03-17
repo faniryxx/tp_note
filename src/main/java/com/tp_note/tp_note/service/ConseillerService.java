@@ -1,9 +1,7 @@
 package com.tp_note.tp_note.service;
 
-import java.util.List;
-
 import com.tp_note.tp_note.ClientEntity;
-import com.tp_note.tp_note.ConseillerEntity;
+import com.tp_note.tp_note.model.dto.ClientDTO;
 import com.tp_note.tp_note.model.dto.ConseillerDTO;
 
 public interface ConseillerService {
@@ -20,9 +18,9 @@ public interface ConseillerService {
 	/**
 	 * Sauvegarde un client dans la base associé à un id conseiller
 	 */
-	ClientEntity save(Integer idConseiller, ClientEntity client);
+	ClientDTO addClient(Integer idConseiller, ClientDTO client);
 	/**
 	 * Sauvegarde un client avec un id dans la base associé à un id conseiller
 	 */
-	ClientEntity save(Integer idClient, Integer idConseiller, ClientEntity client);
+	ClientDTO updateClient(Integer idClient, Integer idConseiller, ClientDTO client);
 }

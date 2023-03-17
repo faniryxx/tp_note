@@ -1,8 +1,12 @@
 package com.tp_note.tp_note.model.dto;
 
+import java.io.Serializable;
+
 import com.tp_note.tp_note.ClientEntity;
 
-public class ClientDTO {
+public class ClientDTO implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
     private Integer id;
     private String nom;

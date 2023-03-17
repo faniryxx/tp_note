@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class ClientRepository {
@@ -17,7 +18,7 @@ public class ClientRepository {
      * Lister tous les clients de la base
      * @return
      */
-    public List getListeClients() {
+    public List<Map<String, Object>> getListeClients() {
         String sql = "SELECT * FROM client;";
         return this.jdbcTemplate.queryForList(sql);
     }
@@ -27,7 +28,7 @@ public class ClientRepository {
      * @param clientId
      * @return
      */
-    public List getListeContrats(Integer clientId) {
+    public List<Map<String, Object>> getListeContrats(Integer clientId) {
         String sql = "SELECT * FROM contrat WHERE id_client="+clientId.toString()+";";
         return this.jdbcTemplate.queryForList(sql);
     }
@@ -38,7 +39,7 @@ public class ClientRepository {
      * @param contratId
      * @return
      */
-    public List getContratDetails(Integer clientId, Integer contratId) {
+    public List<Map<String, Object>> getContratDetails(Integer clientId, Integer contratId) {
         String sql = "SELECT * FROM contrat WHERE id_client="+clientId.toString()+" AND id_contrat="+contratId.toString()+";";
         return this.jdbcTemplate.queryForList(sql);
     }
@@ -48,7 +49,7 @@ public class ClientRepository {
      * @param conseillerId
      * @return
      */
-    public List getClientsFromConseiller(Integer conseillerId) {
+    public List<Map<String, Object>> getClientsFromConseiller(Integer conseillerId) {
         String sql = "SELECT * FROM client WHERE id_conseiller="+conseillerId.toString()+";";
         return this.jdbcTemplate.queryForList(sql);
     }
