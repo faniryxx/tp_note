@@ -80,8 +80,7 @@ public class ClientController {
     }
 
     @PostMapping("/clients/contrats")
-    ResponseEntity.BodyBuilder ajouterContrat(@PathVariable("client_id") Integer clientId,
-                                              @RequestBody ContratDTO contrat) {
+    ResponseEntity.BodyBuilder ajouterContrat(@RequestBody ContratDTO contrat) {
         this.clientService.ajouterContrat(contrat);
         return ResponseEntity.status(HttpStatus.OK);
     }
