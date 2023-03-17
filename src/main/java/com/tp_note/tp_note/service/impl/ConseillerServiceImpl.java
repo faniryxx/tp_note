@@ -1,5 +1,6 @@
 package com.tp_note.tp_note.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,17 +27,23 @@ public class ConseillerServiceImpl implements ConseillerService {
 	@Override
 	public ConseillerDTO findClientsByConseillerId(Integer id) {
 		ConseillerDTO conseiller = new ConseillerDTO(this.conseillerRepository.findById(id).get());
-		List<Map<String, Object>> list = clientRepository.getClientsFromConseiller(id);
+		List<Map<String, Object>> list = clientRepository.getClientsFromConseiller(id); //Réponse sql des clients d'un conseiller
+		List<ClientDTO> clients = new ArrayList<>(); //Liste vide des clients du conseiller
+		
+		//On récupère les données des client pour les ajouter dans la listes
 		for(Map<String, Object> map : list) {
-			for (Map.Entry<String, Object> pair : map.entrySet()) {
-				String str = pair.getKey();
-				Object ob = pair.getValue();
-				System.out.println(str + " " + ob);
-			}
-			System.out.println("--------------");
+			Object[] values = map.values().toArray();
+			ClientDTO client = new ClientDTO();
+			client.setId((Integer)values[0]);
+			client.setNom((String)values[1]);
+			client.setPrenom((String)values[2]);
+			client.setId_conseiller((Integer)values[3]);
+			clients.add(client);
 		}
-		//TODO: get all client by conseiller ID
-		return null;//		this.clientRepository.getClientsFromConseiller(id);
+		
+		conseiller.setClients(clients);
+		System.out.println(conseiller);
+		return conseiller;
 	}
 
 	@Override
