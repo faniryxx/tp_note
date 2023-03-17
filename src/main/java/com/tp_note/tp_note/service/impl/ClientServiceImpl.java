@@ -3,6 +3,7 @@ import java.util.List;
 
 import com.tp_note.tp_note.data.repository.ClientRepository;
 import com.tp_note.tp_note.model.dto.ClientDTO;
+import com.tp_note.tp_note.model.dto.ContratDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.tp_note.tp_note.service.ClientService;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -47,5 +48,10 @@ public class ClientServiceImpl implements ClientService{
 	@Override
 	public void modifierClient(Integer clientId, ClientDTO client) {
 		clientRepository.modifierClient(clientId, client);
+	}
+
+	@Override
+	public void ajouterContrat(ContratDTO contrat) {
+		clientRepository.ajouterContrat(contrat);
 	}
 }

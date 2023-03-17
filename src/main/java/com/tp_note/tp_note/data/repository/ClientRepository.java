@@ -1,6 +1,7 @@
 package com.tp_note.tp_note.data.repository;
 
 import com.tp_note.tp_note.model.dto.ClientDTO;
+import com.tp_note.tp_note.model.dto.ContratDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -90,6 +91,15 @@ public class ClientRepository {
                         "SET nom=(?), prenom=(?), id_conseiller=(?) " +
                         "WHERE id_client=(?); ",
                 client.getNom(), client.getPrenom(), client.getId_conseiller(), clientId
+        );
+    }
+
+    public void ajouterContrat(ContratDTO contrat) {
+        jdbcTemplate.update(
+                "INSERT INTO spring.contrat " +
+                        "(type_de_contrat, description, id_client) " +
+                        "VALUES((?), (?), (?));",
+                contrat.getType_de_contrat(), contrat.getDescription(), contrat.getId_client()
         );
     }
 }
