@@ -2,6 +2,7 @@ package com.tp_note.tp_note.controller;
 import com.tp_note.tp_note.data.repository.ClientRepository;
 
 import com.tp_note.tp_note.model.dto.ClientDTO;
+import com.tp_note.tp_note.model.dto.ContratDTO;
 import com.tp_note.tp_note.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -77,4 +78,12 @@ public class ClientController {
         this.clientService.modifierClient(clientId, client);
         return ResponseEntity.status(HttpStatus.OK);
     }
+
+    @PostMapping("/clients/contrats")
+    ResponseEntity.BodyBuilder ajouterContrat(@PathVariable("client_id") Integer clientId,
+                                              @RequestBody ContratDTO contrat) {
+        this.clientService.ajouterContrat(contrat);
+        return ResponseEntity.status(HttpStatus.OK);
+    }
+
 }

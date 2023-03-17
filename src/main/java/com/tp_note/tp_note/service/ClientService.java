@@ -5,6 +5,7 @@ import java.util.List;
 import com.tp_note.tp_note.ClientEntity;
 import com.tp_note.tp_note.ContratEntity;
 import com.tp_note.tp_note.model.dto.ClientDTO;
+import com.tp_note.tp_note.model.dto.ContratDTO;
 
 public interface ClientService {
 	
@@ -15,4 +16,5 @@ public interface ClientService {
 	void ajouterClient(ClientDTO client);
 	void supprimerClient(Integer clientId);
 	void modifierClient(Integer clientId, ClientDTO client);
+	void ajouterContrat(ContratDTO contrat);
 }
