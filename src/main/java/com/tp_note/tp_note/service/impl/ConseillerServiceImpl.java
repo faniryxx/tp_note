@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.tp_note.tp_note.data.repository.ClientRepository;
 import com.tp_note.tp_note.data.repository.ConseillerRepository;
+import com.tp_note.tp_note.data.repository.ContratRepository;
 import com.tp_note.tp_note.model.dto.ClientDTO;
 import com.tp_note.tp_note.model.dto.ConseillerDTO;
+import com.tp_note.tp_note.model.dto.ContratDTO;
 import com.tp_note.tp_note.service.ConseillerService;
 
 @Service
@@ -21,6 +23,10 @@ public class ConseillerServiceImpl implements ConseillerService {
 	
 	@Autowired
 	private ClientRepository clientRepository;
+	
+	
+	@Autowired
+	private ContratRepository contratRepository;
 	
 	@Override
 	public ConseillerDTO findClientsByConseillerId(Integer id) {
@@ -62,6 +68,18 @@ public class ConseillerServiceImpl implements ConseillerService {
 	public ConseillerDTO getById(Integer id) {
 		
 		return new ConseillerDTO(conseillerRepository.findById(id).get());
+	}
+
+	@Override
+	public ContratDTO ajouterContrat(ContratDTO contrat) {
+		return new ContratDTO(contratRepository.save(contrat.toEntity()));
+	}
+
+	@Override
+	public ContratDTO updateContratDetails(Integer clientId, Integer contratId, ContratDTO contrat) {
+		contrat.setId_client(clientId);
+		contrat.setId_contrat(contratId);
+		return new ContratDTO(contratRepository.save(contrat.toEntity()));
 	}
 
 }

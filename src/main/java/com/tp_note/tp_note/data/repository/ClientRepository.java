@@ -72,8 +72,8 @@ public class ClientRepository {
      * Suppression d'un client de la base MySQL
      * @param clientId
      */
-    public void supprimerClient(Integer clientId) {
-        jdbcTemplate.update(
+    public Integer supprimerClient(Integer clientId) {
+        return jdbcTemplate.update(
                 "DELETE FROM spring.client "+
                         "WHERE id_client=(?);",
                 clientId
@@ -91,24 +91,6 @@ public class ClientRepository {
                         "SET nom=(?), prenom=(?), id_conseiller=(?) " +
                         "WHERE id_client=(?); ",
                 client.getNom(), client.getPrenom(), client.getId_conseiller(), clientId
-        );
-    }
-
-    public void ajouterContrat(ContratDTO contrat) {
-        jdbcTemplate.update(
-                "INSERT INTO spring.contrat " +
-                        "(type_de_contrat, description, id_client) " +
-                        "VALUES((?), (?), (?));",
-                contrat.getType_de_contrat(), contrat.getDescription(), contrat.getId_client()
-        );
-    }
-
-    public void updateContratDetails(Integer clientId, Integer contratId, ContratDTO contrat) {
-        jdbcTemplate.update(
-                "UPDATE spring.contrat " +
-                        "SET type_de_contrat=(?), description=(?), id_client=(?) " +
-                        "WHERE id_contrat=(?);",
-                contrat.getType_de_contrat(), contrat.getDescription(), clientId.toString(), contratId.toString()
         );
     }
 }

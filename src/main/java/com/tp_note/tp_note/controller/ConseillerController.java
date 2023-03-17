@@ -1,6 +1,8 @@
 package com.tp_note.tp_note.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tp_note.tp_note.model.dto.ClientDTO;
 import com.tp_note.tp_note.model.dto.ConseillerDTO;
+import com.tp_note.tp_note.model.dto.ContratDTO;
 import com.tp_note.tp_note.service.ConseillerService;
 
 
@@ -21,20 +24,17 @@ public class ConseillerController {
 
 	@Autowired
     private ConseillerService conseillerService;
-
-    @GetMapping("/{conseiller_id}")
-    public ConseillerDTO getConseiller(@PathVariable(value = "conseiller_id") Integer conseillerId) {
-        return conseillerService.getById(conseillerId);
-    }
 	
     @GetMapping("/{conseiller_id}/clients")
-    public ConseillerDTO getClientsByConseillerId(@PathVariable(value = "conseiller_id") Integer conseillerId) {
-        return conseillerService.findClientsByConseillerId(conseillerId);
+    public ResponseEntity<ConseillerDTO> getClientsByConseillerId(@PathVariable(value = "conseiller_id") Integer conseillerId) {
+    	ConseillerDTO dto = conseillerService.findClientsByConseillerId(conseillerId);
+    	return ResponseEntity.status(HttpStatus.OK).body(dto);
     }
 
     @PostMapping("/{conseiller_id}/clients")
-    public ClientDTO addClient(@PathVariable(value = "conseiller_id") Integer conseillerId, @RequestBody ClientDTO client) {
-        return conseillerService.addClient(conseillerId, client);
+    public ResponseEntity<ClientDTO> addClient(@PathVariable(value = "conseiller_id") Integer conseillerId, @RequestBody ClientDTO client) {
+    	ClientDTO dto = conseillerService.addClient(conseillerId, client);
+    	return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
 
     /**
@@ -45,23 +45,36 @@ public class ConseillerController {
      * @return
      */
     @PutMapping("/{conseiller_id}/clients/{client_id}")
-    public ClientDTO updateClient(@PathVariable(value = "conseiller_id") Integer conseillerId,
+    public ResponseEntity<ClientDTO> updateClient(@PathVariable(value = "conseiller_id") Integer conseillerId,
                                @PathVariable(value = "client_id") Integer clientId, @RequestBody ClientDTO clientDetails) {
-        return conseillerService.updateClient(clientId, conseillerId, clientDetails);
+    	ClientDTO dto = conseillerService.updateClient(clientId, conseillerId, clientDetails);
+    	return ResponseEntity.status(HttpStatus.OK).body(dto);
+    }
+    
+    /**
+     * Ajouter un contrat à un client
+     * @param contrat
+     * @return
+     */
+    @PostMapping("/contrat")
+    public ResponseEntity<ContratDTO> addContrat(@RequestBody ContratDTO contrat) {
+    	ContratDTO dto = this.conseillerService.ajouterContrat(contrat);
+        return ResponseEntity.status(HttpStatus.CREATED).body(dto);
+    }
+    
+    /**
+     * Modification d'un contrat
+     * @param clientId
+     * @param contratId
+     * @return
+     */
+    @PutMapping("/contrat/{contrat_id}/client/{client_id}")
+    public ResponseEntity<ContratDTO> updateContratDetails(@PathVariable(value = "client_id") Integer clientId,
+                                  @PathVariable(value = "contrat_id") Integer contratId,
+                                     @RequestBody ContratDTO contrat) {
+        ContratDTO dto = this.conseillerService.updateContratDetails(clientId, contratId, contrat);
+        return ResponseEntity.status(HttpStatus.OK).body(dto);
     }
 
-   /* @DeleteMapping("/{conseiller_id}/clients/{client_id}")
-    public ResponseEntity<?> deleteClient(@PathVariable(value = "conseiller_id") Long conseillerId,
-                                           @PathVariable(value = "client_id") Long clientId) {
-        Conseiller conseiller = conseillerRepository.findById(conseillerId);
-                //.orElseThrow(() -> new ResourceNotFoundException("Conseiller", "id", conseillerId));
-
-        Client client = clientRepository.findById(clientId);
-                //.orElseThrow(() -> new ResourceNotFoundException("Client", "id", clientId));
-
-        clientRepository.delete(client);
-
-        return ResponseEntity.ok().build();
-    }*/
 }
 
