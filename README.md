@@ -2,7 +2,10 @@
 
 Groupe 5
 
-Le fichier "API.postman_collection.json" à la racine du projet permet de lancer postman avec les différentes requêtes de l'API
+## Importer les requêtes de l'API sur postman
+
+- Cliquer sur les tirets en haut à gauche : file -> import -> choose file
+- Séléctionner le fichier json à la racine du projet : "API.postman_collection.json"
 
 ### Endpoints client
 
